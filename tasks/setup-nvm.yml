@@ -16,21 +16,21 @@
   shell: >
     /bin/bash -c "source {{ home }}/.nvm/nvm.sh"
 
-- name: Checking if .profile configuration file exists
+- name: Checking if .bashrc configuration file exists
   stat:
-    path: "{{ home }}/.profile"
-  register: check_profile_file
+    path: "{{ home }}/.bashrc"
+  register: check_bashrc_file
 
-- name: Creating missing configuration .profile file
+- name: Creating missing configuration .bashrc file
   file:
-    path: "{{ nvm_profile }}"
+    path: "{{ home }}/.bashrc"
     owner: "{{ user }}"
     group: "{{ user }}"
     mode: 0775
     state: touch
-  when: not check_profile_file.stat.exists
+  when: not check_bashrc_file.stat.exists
 
-- name: Adding a block of code in the .profile file, that loads configurations of Node Version Manager
+- name: Adding a block of code in the .bashrc file, that loads configurations of Node Version Manager
   blockinfile:
     block: |
       # set PATH so it includes user's Node Version Manager's configuration settings
@@ -39,8 +39,8 @@
     marker: ""
     insertafter: '-XX:originaltext'
     mode: 0644
-    path: "{{ home }}/.profile"
+    path: "{{ home }}/.bashrc"
     state: present
   when:
-    - check_profile_file.stat.exists
+    - check_bashrc_file.stat.exists
     - nvm_nodejs_add_block
