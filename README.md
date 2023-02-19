@@ -20,7 +20,7 @@ Example use of a role that will install the latest LTS version from  [Node.js](h
   roles:
     - role: krudi.nvm
       # This option adds block code that loads the configuration from the Node Version Manager
-      ## If you don't have any Node Version Manager loading from files such as **.bashrc**, **.zsh** or **.profile**, this option should be set to **true*
+      ## If you don't have any Node Version Manager loading from files such as **.bashrc**, **.zsh** or **.profile**, this option should be set to **true**
       nvm_nodejs_add_block: false
 ```
 

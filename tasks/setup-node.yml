@@ -1,6 +1,6 @@
 ---
 - name: Installation of Node.js (version - long-term support)
-  shell: "source /home/patryk/.nvm/nvm.sh && nvm install --lts"
+  shell: "source /home/{{ user }}/.nvm/nvm.sh && nvm install --lts"
   args:
     executable: /bin/bash
     chdir: "{{ home }}/.nvm"
