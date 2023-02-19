@@ -1,0 +1,14 @@
+---
+# Variable to get current home path
+home: "{{lookup('env', 'HOME')}}"
+
+# Needed dependencies to install Node Version Manager
+setup_dependencies_list:
+  - build-essential
+  - libssl-dev
+  - curl
+
+## Recommended settings for Node.js
+## lts - recommended version (long-term support)
+## After completing the intallation via Ansible, use the command `nvm install NODEJS_VERSION` to change the version of Node.js
+nvm_nodejs_version: lts

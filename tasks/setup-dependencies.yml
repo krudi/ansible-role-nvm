@@ -1,0 +1,10 @@
+---
+- name: Defining the variable from needed packages to install Node Version Manager
+  set_fact:
+    setup_dependencies_list: "{{ __setup_dependencies_list | list }}"
+  when: setup_dependencies_list is not defined
+
+- name: Checking if Node Version Manager's dependencies are installed
+  package:
+    name: "{{ setup_dependencies_list }}"
+    state: present

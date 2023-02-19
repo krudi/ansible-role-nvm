@@ -1,0 +1,21 @@
+---
+galaxy_info:
+  role_name: nvm
+  description: Installs Node Version Manager through the official script
+  license: MIT
+  min_ansible_version: "2.0"
+  author: krudi
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+  galaxy_tags:
+    - nodejs
+    - node
+    - node version manager
+    - nvm
+
+dependencies: []

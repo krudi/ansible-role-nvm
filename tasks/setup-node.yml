@@ -1,0 +1,8 @@
+---
+- name: Installation of Node.js (version - long-term support)
+  shell: "source /home/patryk/.nvm/nvm.sh && nvm install --lts"
+  args:
+    executable: /bin/bash
+    chdir: "{{ home }}/.nvm"
+  register: nvm_install_result
+  changed_when: "'is already installed.' not in nvm_install_result.stderr"

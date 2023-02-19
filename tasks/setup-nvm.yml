@@ -1,0 +1,42 @@
+---
+- name: Cloning a Git repository of Node Version Manager
+  git:
+    repo: https://github.com/creationix/nvm.git
+    dest: "{{ home }}/.nvm"
+    version: master
+
+- name: Change folder ownership, group and permissions
+  file:
+    path: "{{ home }}/.nvm"
+    owner: patryk
+    group: patryk
+    mode: 0775
+
+- name: Run installation script of Node Version Manager
+  shell: >
+    /bin/bash -c "source {{ home }}/.nvm/nvm.sh"
+
+- name: Checking if .profile configuration file exists
+  stat:
+    path: "{{ home }}/.profile"
+  register: check_profile_file
+
+- name: Adding a block of code in the .profile file, that loads configurations of Node Version Manager
+  blockinfile:
+    block: |
+      # set PATH so it includes user's Node Version Manager's configuration settings
+      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+      [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+    marker: ""
+    insertafter: '-XX:originaltext'
+    mode: 0644
+    path: "{{ home }}/.profile"
+    state: present
+  when:
+    - check_profile_file.stat.exists
+    - nvm_nodejs_add_block
+
+- name: Configuration file .profile does not exists
+  debug:
+    msg: Configuration file .profile does not exists
+  when: not check_profile_file.stat.exists
