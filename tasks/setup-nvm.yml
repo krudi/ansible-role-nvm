@@ -21,6 +21,15 @@
     path: "{{ home }}/.profile"
   register: check_profile_file
 
+- name: Creating missing configuration .profile file
+  file:
+    path: "{{ nvm_profile }}"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0775
+    state: touch
+  when: not check_profile_file.stat.exists
+
 - name: Adding a block of code in the .profile file, that loads configurations of Node Version Manager
   blockinfile:
     block: |
@@ -35,8 +44,3 @@
   when:
     - check_profile_file.stat.exists
     - nvm_nodejs_add_block
-
-- name: Configuration file .profile does not exists
-  debug:
-    msg: Configuration file .profile does not exists
-  when: not check_profile_file.stat.exists
