@@ -13,7 +13,7 @@ Officially, the requirements from Node [Node Version Manager](https://github.com
 
 ## Example playbook
 
-Example use of a role that will install the latest LTS version from  [Node.js](https://github.com/nodejs)
+Example use of a role, that will install the latest LTS version of [Node.js](https://github.com/nodejs)
 
 ```yml
 - hosts: all
