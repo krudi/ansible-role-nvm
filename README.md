@@ -32,4 +32,4 @@ More information can be found here: <https://github.com/nvm-sh/nvm#usage>
 
 ## Issue
 
-Have you found a bug in this project or have a suggestion for a new feature? Create a new ticket for the bug or feature, which can be found on the [GitHub](ttps://github.com/krudi/ansible-role-nvm/issues) page
+Have you found a bug in this project or have a suggestion for a new feature? Create a new ticket for the bug or feature, which can be found on the [GitHub](https://github.com/krudi/ansible-role-nvm/issues) page
