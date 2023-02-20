@@ -24,6 +24,13 @@ Example use of a role, that will install the latest LTS version of [Node.js](htt
       nvm_nodejs_add_block: false
 ```
 
+## Linting commands for [yamllint](https://yamllint.readthedocs.io/en/stable/quickstart.html)
+
+If you have [yamllint](https://yamllint.readthedocs.io/en/stable/quickstart.html) installed on your machine then here are some useful commands for linting .yml files
+
+- `yamllint .` - to lint all YAML files in a whole directory
+- `yamllint -c ./.yamllint .` - to lint all YAML files in a whole directory with specifed configuration
+
 ## Additional information
 
 To change the version of Node Version Manager after installing this role, just use the official [Node Version Manager](https://github.com/nvm-sh/nvm) install command
