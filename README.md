@@ -1,6 +1,6 @@
 # ansible-role-nvm
 
-A role for [Ansible](https://github.com/ansible/ansible), that installs [Node Version Manager](https://github.com/nvm-sh/nvm), along with [Node.js](https://github.com/nodejs)
+A role for [Ansible](https://github.com/ansible/ansible), that installs [Node Version Manager](https://github.com/nvm-sh/nvm), along with [Node.js](https://github.com/nodejs).
 
 ## Requirements
 
