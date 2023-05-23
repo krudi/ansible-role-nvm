@@ -1,9 +1,3 @@
-## Ansible files
+# Ansible files
 
 *.retry
-
-## Editor directories and files
-
-.idea
-.vscode
-.fleet
