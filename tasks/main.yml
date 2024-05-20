@@ -1,0 +1,12 @@
+---
+- name: Loading a task to install dependencies
+  ansible.builtin.include_tasks: setup-dependencies.yml
+  when: ansible_os_family == "Debian"
+
+- name: Loading a task to install Node.js
+  ansible.builtin.include_tasks: setup-node.yml
+  when: ansible_os_family == "Debian"
+
+- name: Loading a task to install Node Version Manager
+  ansible.builtin.include_tasks: setup-nvm.yml
+  when: ansible_os_family == "Debian"

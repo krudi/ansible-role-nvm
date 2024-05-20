@@ -1,0 +1,20 @@
+---
+galaxy_info:
+  role_name: nvm
+  description: A role for Ansible that installs Node Version Manager, along with Node.js.
+  license: MIT
+  min_ansible_version: "2.9"
+  author: krudi
+  standalone: true
+  platforms:
+    - name: Ubuntu
+      versions:
+        - jammy
+        - noble
+
+  galaxy_tags:
+    - nodejs
+    - node
+    - nvm
+
+dependencies: []

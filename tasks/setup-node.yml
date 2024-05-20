@@ -1,0 +1,49 @@
+---
+- name: Ensure APT package cache is updated
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 600
+
+- name: Ensure the directory for storing APT keyrings exists and has the correct permissions
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: "0755"
+  when: nodejs.install | default(nodejs.install)
+
+- name: Download the GPG key for Node.js from the specified URL to a temporary location
+  ansible.builtin.get_url:
+    url: https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key
+    dest: /tmp/nodesource.gpg.key
+    mode: "0644"
+  when: nodejs.install | default(nodejs.install)
+
+- name: Convert the downloaded Node.js GPG key to a format suitable for APT and add it to the keyring directory
+  ansible.builtin.command: >
+    gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg /tmp/nodesource.gpg.key
+  args:
+    creates: /etc/apt/keyrings/nodesource.gpg
+  when: nodejs.install | default(nodejs.install)
+
+- name: Ensure the Node.js GPG key in the keyring directory has the correct read permissions for all users
+  ansible.builtin.file:
+    path: /etc/apt/keyrings/nodesource.gpg
+    mode: "0644"
+  when: nodejs.install | default(nodejs.install)
+
+- name: Add the Node.js repository to APT, allowing Node.js packages to be installed and updated from it
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_{{ nodejs.version }}.x nodistro main"
+    state: present
+  when: nodejs.install | default(nodejs.install)
+
+- name: Update the APT package list to include the latest information from all configured repositories, including Node.js
+  ansible.builtin.apt:
+    update_cache: yes
+  when: nodejs.install | default(nodejs.install)
+
+- name: Install the Node.js package using APT
+  ansible.builtin.apt:
+    name: nodejs
+    state: present
+  when: nodejs.install | default(nodejs.install)

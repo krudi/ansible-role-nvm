@@ -1,0 +1,44 @@
+---
+- name: Download NVM installation script
+  ansible.builtin.get_url:
+    url: "{{ nvm.script }}"
+    dest: /tmp/install_nvm.sh
+    mode: '0755'
+  when: nvm.install | default(nvm.install)
+
+- name: Install Node Version Manager
+  ansible.builtin.shell: >
+    /tmp/install_nvm.sh
+  args:
+    executable: /bin/bash
+    creates: "~/.nvm/nvm.sh"
+  when: nvm.install | default(nvm.install)
+
+- name: Ensure .bashrc file exists in the user home directory
+  ansible.builtin.file:
+    path: "~/.bashrc"
+    state: touch
+    mode: "0644"
+  register: bashrc_check
+
+- name: Ensure .bashrc file has correct permissions
+  ansible.builtin.file:
+    path: "~/.bashrc"
+    mode: "0644"
+  when: bashrc_check.changed
+
+- name: Check if Node Version Manager block is already present in .bashrc
+  ansible.builtin.shell: grep -q 'export NVM_DIR="$HOME/.nvm"' ~/.bashrc
+  register: nvm_block_present
+  ignore_errors: true
+  changed_when: false
+
+- name: Add Node Version Manager initialization to .bashrc file for the user
+  ansible.builtin.blockinfile:
+    path: "~/.bashrc"
+    block: |
+      export NVM_DIR="$HOME/.nvm"
+      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+      [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  when: nvm.install | default(nvm.install) and nvm.add_block | default(nvm.add_block) and nvm_block_present.rc != 0
+  notify: Reload shell

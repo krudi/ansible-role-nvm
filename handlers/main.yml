@@ -1,0 +1,4 @@
+---
+- name: Reload shell
+  ansible.builtin.command: /bin/bash -c "source ~/.bashrc"
+  changed_when: false

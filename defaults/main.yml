@@ -1,0 +1,11 @@
+---
+nodejs:
+  install: true
+  version: 22
+
+nvm:
+  install: true
+  script: https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh
+  # This option adds block code that loads the configuration from the Node Version Manager.
+  # If you don't have any Node Version Manager loading from files such as .bashrc, .zsh or .profile, this option should be set to true
+  add_block: false
