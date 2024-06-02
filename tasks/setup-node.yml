@@ -40,6 +40,7 @@
 - name: Update the APT package list to include the latest information from all configured repositories, including Node.js
   ansible.builtin.apt:
     update_cache: yes
+    cache_valid_time: 600
   when: nodejs.install | default(nodejs.install)
 
 - name: Install the Node.js package using APT

@@ -17,7 +17,7 @@
 - name: Ensure .bashrc file exists in the user home directory
   ansible.builtin.file:
     path: "~/.bashrc"
-    state: touch
+    state: file
     mode: "0644"
   register: bashrc_check
 
