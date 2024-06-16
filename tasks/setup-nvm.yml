@@ -19,13 +19,7 @@
     path: "~/.bashrc"
     state: file
     mode: "0644"
-  register: bashrc_check
-
-- name: Ensure .bashrc file has correct permissions
-  ansible.builtin.file:
-    path: "~/.bashrc"
-    mode: "0644"
-  when: bashrc_check.changed
+  notify: Ensure .bashrc file has correct permissions
 
 - name: Check if Node Version Manager block is already present in .bashrc
   ansible.builtin.shell: grep -q 'export NVM_DIR="$HOME/.nvm"' ~/.bashrc

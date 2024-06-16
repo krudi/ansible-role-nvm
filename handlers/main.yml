@@ -2,3 +2,8 @@
 - name: Reload shell
   ansible.builtin.command: /bin/bash -c "source ~/.bashrc"
   changed_when: false
+
+- name: Ensure .bashrc file has correct permissions
+  ansible.builtin.file:
+    path: "~/.bashrc"
+    mode: "0644"
