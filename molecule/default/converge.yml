@@ -18,7 +18,7 @@
         loop_var: dependency
 
   roles:
-    - role: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
+    - role: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') }}"
       nodejs:
         install: true
         version: 22
