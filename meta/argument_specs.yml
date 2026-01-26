@@ -1,0 +1,26 @@
+---
+argument_specs:
+  main:
+    short_description: Install Node Version Manager and Node.js.
+    options:
+      nodejs:
+        type: dict
+        options:
+          install:
+            type: bool
+            default: true
+          version:
+            type: int
+            default: 22
+      nvm:
+        type: dict
+        options:
+          install:
+            type: bool
+            default: true
+          script:
+            type: str
+            default: https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh
+          add_block:
+            type: bool
+            default: false

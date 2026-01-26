@@ -1,0 +1,18 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Check nvm script exists
+      ansible.builtin.stat:
+        path: /root/.nvm/nvm.sh
+      register: nvm_script
+
+    - name: Assert nvm script is present
+      ansible.builtin.assert:
+        that:
+          - nvm_script.stat.exists
+
+    - name: Check node binary is available
+      ansible.builtin.command: node --version
+      register: node_version
+      changed_when: false
