@@ -23,4 +23,4 @@ Explain what you changed and how it solves the problem.
 
 ## Checklist
 
-- [ ] I have read the [Contributing Guidelines](https://github.com/krudi/ansible-role-nvm/blob/main/CONTRIBUTING.md)
+- [ ] I have read the [Contributing Guidelines](https://github.com/krudi/ansible-role-nvm/blob/main/.github/CONTRIBUTING.md)
