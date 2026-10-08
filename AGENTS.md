@@ -19,7 +19,7 @@ NodeSource APT repository and Node Version Manager (nvm) from its install script
 | Test scenario (platforms, sequence, assertions)  | `molecule/default/`                                    |
 | CI lint, test matrix and Galaxy release          | `.github/workflows/`                                   |
 | Branch and commit message conventions            | `.github/CONTRIBUTING.md`                              |
-| Repeatable workflows (commit, PR, retrospective) | `.ai/skills/<name>/SKILL.md` — pick by its description |
+| Repeatable workflows (commit, PR)                | `.ai/skills/<name>/SKILL.md` — pick by its description |
 
 This file owns the agent conventions. Do not create competing documentation; update the owner instead.
 
